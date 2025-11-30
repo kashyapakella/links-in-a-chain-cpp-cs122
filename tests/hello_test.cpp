@@ -5,6 +5,29 @@
 
 #include "../src/hello.hpp"
 
-TEST_CASE( "it returns Hello World" ) {
-    REQUIRE( hello() == "Hello World!" );
+TEST_CASE("Adding a node")
+{
+    LinkedList l;
+    REQUIRE(l.size() == 0);
+    Link *link = new Link("Gold");
+    l.add(link);
+
+    REQUIRE(l.size() == 1);
+    REQUIRE(l.get_head()->data->get_material() == "Gold");
+}
+
+TEST_CASE("Adding multiple nodes")
+{
+    LinkedList l;
+    Link *link = new Link("Gold");
+    Link *link2 = new Link("Silver");
+    Link *link3 = new Link("Bronze");
+    l.add(link);
+    l.add(link2);
+    l.add(link3);
+
+    REQUIRE(l.size() == 3);
+    REQUIRE(l.get_head()->data->get_material() == "Gold");
+    REQUIRE(l.get_head()->next->data->get_material() == "Silver");
+    REQUIRE(l.get_head()->next->next->data->get_material() == "Bronze");
 }
